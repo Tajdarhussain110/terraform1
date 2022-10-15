@@ -1,0 +1,19 @@
+pipeline {
+    agent {label 'new-1'}
+    stages {
+        stage('clone') {
+            steps {
+              git url:'https://github.com/Tajdarhussain110/terraform1.git',
+              branch:'master'
+            }
+          }
+          stage('normal') {
+            steps {
+                sh """terraform init 
+                      terraform validate
+                      terraform apply -auto-approve"""
+                      
+            }
+          }
+        }
+}
